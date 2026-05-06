@@ -1,37 +1,77 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Sparkles, Layers, Compass, Zap, Star } from "lucide-react";
-import { SectionHeader } from "@/components/site/SectionHeader";
+import {
+  ArrowRight,
+  BookOpen,
+  Brush,
+  ChevronLeft,
+  ChevronRight,
+  Cloud,
+  Edit3,
+  Globe,
+  Megaphone,
+  PenLine,
+  Phone,
+  Quote,
+  Star,
+  Trophy,
+  Upload,
+  Users,
+  Check,
+} from "lucide-react";
+import heroBook from "@/assets/hero-book.png";
+import book1 from "@/assets/book-1.jpg";
+import book2 from "@/assets/book-2.jpg";
+import book3 from "@/assets/book-3.jpg";
+import book4 from "@/assets/book-4.jpg";
+import book5 from "@/assets/book-5.jpg";
+import book6 from "@/assets/book-6.jpg";
+import sarah from "@/assets/avatar-sarah.jpg";
 
 export const Route = createFileRoute("/")({
+  component: HomePage,
   head: () => ({
     meta: [
-      { title: "Noctura — A Design & Technology Studio" },
-      { name: "description", content: "We design and build premium digital experiences for category-defining brands." },
-      { property: "og:title", content: "Noctura — A Design & Technology Studio" },
-      { property: "og:description", content: "We design and build premium digital experiences for category-defining brands." },
+      { title: "WhiteFalcon Publishing — Turn Your Manuscript Into a Published Book" },
+      { name: "description", content: "End-to-end book publishing: editing, cover design, global distribution and marketing. You write. We handle the rest." },
     ],
   }),
-  component: HomePage,
 });
 
+const steps = [
+  { n: "01", icon: Upload, title: "Upload Manuscript", desc: "Submit your manuscript and tell us about your book." },
+  { n: "02", icon: PenLine, title: "We Edit & Design", desc: "Our experts edit your book and design a stunning cover." },
+  { n: "03", icon: Globe, title: "Publish Globally", desc: "We publish and distribute your book to leading platforms." },
+  { n: "04", icon: Trophy, title: "Start Selling", desc: "Reach readers worldwide and earn your royalties." },
+];
+
 const services = [
-  { icon: Compass, title: "Brand Strategy", desc: "Positioning, narrative and identity systems that resonate." },
-  { icon: Layers, title: "Product Design", desc: "Interfaces engineered for clarity, conversion and craft." },
-  { icon: Zap, title: "Web Engineering", desc: "Performant, accessible builds in the modern web stack." },
-  { icon: Sparkles, title: "Motion & 3D", desc: "Cinematic animation and interaction that elevates story." },
+  { icon: Edit3, color: "var(--brand)", bg: "oklch(0.66 0.21 290 / 0.18)", title: "Book Editing", desc: "Professional editing to refine your content and make it reader-ready." },
+  { icon: Brush, color: "oklch(0.72 0.16 230)", bg: "oklch(0.72 0.16 230 / 0.18)", title: "Cover Design", desc: "Eye-catching cover designs that attract readers and represent your story." },
+  { icon: BookOpen, color: "oklch(0.72 0.18 160)", bg: "oklch(0.72 0.18 160 / 0.18)", title: "Publishing", desc: "We publish your book in print, eBook, and audiobook formats globally." },
+  { icon: Megaphone, color: "oklch(0.78 0.16 60)", bg: "oklch(0.78 0.16 60 / 0.18)", title: "Marketing", desc: "From social media to ads, we help your book reach the right audience." },
 ];
 
-const projects = [
-  { title: "Atlas Capital", tag: "Finance · Web", year: "2026" },
-  { title: "Lumen Studio", tag: "Brand · Identity", year: "2025" },
-  { title: "Northwind", tag: "Product · App", year: "2025" },
-  { title: "Verra", tag: "E-commerce", year: "2024" },
+const stats = [
+  { icon: Users, value: "500+", label: "Authors Published" },
+  { icon: BookOpen, value: "1000+", label: "Books Published" },
+  { icon: Globe, value: "50+", label: "Countries Reached" },
+  { icon: Trophy, value: "98%", label: "Client Satisfaction" },
 ];
 
-const testimonials = [
-  { quote: "Noctura translated a vague vision into a brand that feels inevitable. Every detail is intentional.", author: "Helena Voss", role: "CEO, Atlas Capital" },
-  { quote: "The most considered studio we've worked with. The launch moved our key metric by 38% in six weeks.", author: "Marcus Lin", role: "Founder, Northwind" },
+const books = [
+  { src: book1, title: "The Silent Waves", author: "Lily Morgan" },
+  { src: book2, title: "Timeless Memories", author: "James Carter" },
+  { src: book3, title: "The Path Within", author: "Omar Stone" },
+  { src: book4, title: "Broken Chains", author: "Michael Brown" },
+  { src: book5, title: "Whispers of the Heart", author: "Sophia Lane" },
+  { src: book6, title: "The Last Light", author: "Ethan Walker" },
+];
+
+const plans = [
+  { name: "Basic", price: "$499", tag: "Perfect for first-time authors", features: ["Professional Editing", "eBook Publishing", "Standard Cover Design", "Global Distribution"], featured: false },
+  { name: "Pro", price: "$799", tag: "Everything you need to succeed", features: ["Everything in Basic", "Print & eBook Publishing", "Premium Cover Design", "Marketing Support"], featured: true },
+  { name: "Premium", price: "$1299", tag: "For authors who want the best", features: ["Everything in Pro", "Audiobook Publishing", "Advanced Marketing", "Priority Support"], featured: false },
 ];
 
 function HomePage() {
@@ -39,220 +79,235 @@ function HomePage() {
     <>
       {/* HERO */}
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0 -z-10" style={{ background: "var(--gradient-radial)" }} />
-        <div className="absolute inset-0 -z-10 grain opacity-30" />
-        <div className="container-wide pt-16 md:pt-24 pb-24 md:pb-32">
-          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="eyebrow">
-            Independent Studio · Est. 2019
-          </motion.div>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-8 font-display text-[clamp(3rem,8.5vw,8rem)] leading-[0.92] tracking-[-0.035em] max-w-[15ch] display-balance"
-          >
-            Designing the <span className="italic gradient-text">quietly remarkable</span>.
-          </motion.h1>
-
-          <div className="mt-14 grid gap-10 md:grid-cols-[1fr_auto] md:items-end">
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3 }}
-              className="text-muted-foreground text-lg md:text-xl max-w-xl leading-[1.6] pretty"
+        <div className="absolute inset-0 -z-10" style={{ background: "var(--gradient-hero)" }} />
+        <div className="container-wide pt-12 pb-20 md:pt-16 md:pb-28 grid lg:grid-cols-2 gap-10 items-center">
+          <div>
+            <motion.span initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="inline-block text-[11px] tracking-[0.22em] font-semibold uppercase text-brand px-3 py-1.5 rounded-full border border-[color-mix(in_oklab,var(--brand)_40%,transparent)]">
+              Publish Your Story. Inspire The World
+            </motion.span>
+            <motion.h1
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7 }}
+              className="mt-6 font-display text-[clamp(2.5rem,5.6vw,4.75rem)] leading-[1.05] tracking-tight balance"
             >
-              Noctura is a design & technology studio crafting brand systems, products and websites that feel as considered as they look.
-            </motion.p>
-
-            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }} className="flex flex-wrap items-center gap-3">
-              <Link to="/contact" className="btn-primary">
-                Start a project <ArrowUpRight className="h-4 w-4" />
-              </Link>
-              <Link to="/portfolio" className="btn-ghost">
-                View selected work
-              </Link>
-            </motion.div>
-          </div>
-
-          {/* HERO IMAGE / VISUAL */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.55, duration: 1 }}
-            className="mt-20 md:mt-24 relative aspect-[16/8.5] rounded-[2rem] overflow-hidden border border-border"
-            style={{ boxShadow: "var(--shadow-elegant)" }}
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-[oklch(0.32_0.05_70)] via-[oklch(0.22_0.04_60)] to-[oklch(0.14_0.02_50)]" />
-            <div className="absolute inset-0" style={{ background: "var(--gradient-radial)" }} />
-            <div className="absolute inset-0 grain opacity-40" />
-            <div className="absolute inset-0 grid place-items-center px-6">
-              <div className="text-center">
-                <p className="font-display italic text-3xl md:text-5xl text-foreground/90 leading-tight">"Less, but better — and felt."</p>
-                <p className="mt-5 text-[11px] tracking-[0.4em] uppercase text-muted-foreground">— Studio Manifesto</p>
+              Turn Your Manuscript<br />
+              Into a <span className="gradient-brand-text">Published Book</span>
+            </motion.h1>
+            <p className="mt-6 text-[15px] md:text-base text-muted-foreground max-w-md leading-relaxed">
+              We provide end-to-end publishing solutions — from editing and cover design to global distribution and marketing. You write. We handle the rest.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link to="/contact" className="btn-primary">Start Publishing <ArrowRight className="h-4 w-4" /></Link>
+              <Link to="/contact" className="btn-outline">Free Consultation <Phone className="h-4 w-4" /></Link>
+            </div>
+            <div className="mt-8 flex items-center gap-4">
+              <div className="flex -space-x-2">
+                {[1,2,3,4].map((i) => (
+                  <img key={i} src={sarah} alt="" className="h-9 w-9 rounded-full border-2 border-background object-cover" loading="lazy" />
+                ))}
+              </div>
+              <div>
+                <div className="flex items-center gap-1 text-[var(--warning)]">
+                  {[...Array(5)].map((_, i) => <Star key={i} className="h-3.5 w-3.5 fill-current" />)}
+                </div>
+                <p className="text-xs text-muted-foreground mt-0.5">4.9/5 from 500+ Authors</p>
               </div>
             </div>
-            <div className="absolute bottom-6 left-6 right-6 flex flex-wrap items-center justify-between gap-4 text-[10px] uppercase tracking-[0.32em] text-muted-foreground">
-              <span>Selected Work · 2019—2026</span>
-              <span className="inline-flex items-center gap-2 text-gold">
-                <span className="relative grid place-items-center h-2 w-2">
-                  <span className="absolute inset-0 rounded-full bg-gold animate-ping opacity-60" />
-                  <span className="relative h-2 w-2 rounded-full bg-gold" />
-                </span>
-                Booking Q3
-              </span>
+          </div>
+
+          {/* Hero visual */}
+          <div className="relative h-[460px] md:h-[540px] flex items-center justify-center">
+            <div className="absolute inset-0 grid place-items-center">
+              <div className="h-[380px] w-[380px] md:h-[460px] md:w-[460px] rounded-full border border-[color-mix(in_oklab,var(--brand)_30%,transparent)] opacity-70" />
             </div>
-          </motion.div>
+            <img src={heroBook} alt="Beyond The Horizon book by Alex Richards" className="relative z-10 h-full w-auto object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.6)]" width={896} height={1024} />
+            <FloatTag className="top-4 right-2 md:right-8" icon={Edit3} label="Editing" />
+            <FloatTag className="top-24 right-0" icon={PenLine} label="Design" />
+            <FloatTag className="bottom-28 left-2" icon={BookOpen} label="Publishing" />
+            <FloatTag className="bottom-6 right-6" icon={Megaphone} label="Marketing" />
+          </div>
         </div>
       </section>
 
-      {/* MARQUEE / CLIENTS */}
-      <section className="border-y border-border bg-surface/60">
-        <div className="container-wide py-10 flex flex-wrap items-center justify-between gap-x-10 gap-y-6 text-muted-foreground">
-          <span className="text-[11px] uppercase tracking-[0.32em] text-muted-foreground/70">Trusted by</span>
-          {["ATLAS", "LUMEN", "NORTHWIND", "VERRA", "OBSIDIAN", "MERIDIAN"].map((b) => (
-            <span key={b} className="font-display text-lg tracking-[0.28em] opacity-60 hover:opacity-100 hover:text-foreground transition-all">{b}</span>
+      {/* HOW IT WORKS */}
+      <section className="container-wide py-20">
+        <div className="text-center max-w-2xl mx-auto">
+          <span className="eyebrow">How It Works</span>
+          <h2 className="mt-3 font-display text-[clamp(1.85rem,3.4vw,2.6rem)] balance">Simple Steps to Publish Your Book</h2>
+        </div>
+        <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4 relative">
+          {steps.map((s, i) => (
+            <motion.div
+              key={s.n}
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.08 }}
+              className="card-soft p-6 text-center relative"
+            >
+              <div className="absolute -top-3 left-5 text-[11px] font-semibold tracking-widest text-brand bg-background px-2.5 py-1 rounded-md border border-border">{s.n}</div>
+              <div className="mx-auto h-12 w-12 grid place-items-center rounded-xl mt-2" style={{ background: "color-mix(in oklab, var(--brand) 15%, transparent)" }}>
+                <s.icon className="h-5 w-5 text-brand" />
+              </div>
+              <h3 className="mt-4 font-display text-lg">{s.title}</h3>
+              <p className="mt-1.5 text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
+            </motion.div>
           ))}
         </div>
       </section>
 
       {/* SERVICES */}
-      <section className="py-28 md:py-40">
-        <div className="container-wide">
-          <SectionHeader
-            eyebrow="What we do"
-            title={<>A studio with <span className="italic text-gold">range</span>, built for depth.</>}
-            description="Four practices, one team. We move from strategy to shipped product without the handoff friction."
-          />
-          <div className="mt-20 grid gap-6 md:grid-cols-2">
-            {services.map((s, i) => (
-              <motion.div
-                key={s.title}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ delay: i * 0.06, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                className="card-luxe p-10 md:p-12 group"
-              >
-                <div className="flex items-start justify-between mb-12">
-                  <div className="h-12 w-12 rounded-xl bg-gold/10 text-gold grid place-items-center group-hover:bg-gold group-hover:text-gold-foreground transition-colors duration-500">
-                    <s.icon className="h-5 w-5" />
-                  </div>
-                  <span className="text-xs tracking-[0.3em] text-muted-foreground/70">0{i + 1} / 04</span>
-                </div>
-                <h3 className="font-display text-[28px] md:text-[34px] leading-[1.1]">{s.title}</h3>
-                <p className="mt-4 text-muted-foreground leading-[1.65] pretty max-w-md">{s.desc}</p>
-                <div className="mt-10 flex items-center gap-2 text-sm text-gold/80 group-hover:text-gold transition-colors">
-                  <span>Learn more</span>
-                  <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </div>
-              </motion.div>
-            ))}
-          </div>
+      <section className="container-wide py-12">
+        <div className="text-center max-w-2xl mx-auto">
+          <span className="eyebrow">Our Services</span>
+          <h2 className="mt-3 font-display text-[clamp(1.85rem,3.4vw,2.6rem)] balance">Everything You Need to Publish</h2>
         </div>
-      </section>
-
-      {/* WORK */}
-      <section className="py-28 md:py-36 bg-surface relative">
-        <div className="absolute inset-x-0 top-0 hairline" />
-        <div className="container-wide">
-          <div className="flex items-end justify-between flex-wrap gap-8">
-            <SectionHeader eyebrow="Selected work" title={<>Projects we're <span className="italic text-gold">proud</span> of.</>} />
-            <Link to="/portfolio" className="group inline-flex items-center gap-2 text-sm text-foreground/80 hover:text-gold transition-colors">
-              View all projects
-              <span className="grid place-items-center h-9 w-9 rounded-full border border-border group-hover:border-gold/50 group-hover:bg-gold/10 transition-colors">
-                <ArrowUpRight className="h-4 w-4" />
-              </span>
-            </Link>
-          </div>
-
-          <div className="mt-20 grid gap-10 md:gap-12 md:grid-cols-2">
-            {projects.map((p, i) => (
-              <motion.div
-                key={p.title}
-                initial={{ opacity: 0, y: 28 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ delay: i * 0.08, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                className="group cursor-pointer"
-              >
-                <div className="relative aspect-[4/3] rounded-[1.75rem] overflow-hidden border border-border bg-gradient-to-br from-[oklch(0.28_0.04_70)] to-[oklch(0.16_0.02_60)]">
-                  <div className="absolute inset-0 grain opacity-30" />
-                  <div className="absolute inset-0 grid place-items-center">
-                    <span className="font-display italic text-5xl md:text-6xl text-foreground/15 group-hover:text-foreground/30 transition-all duration-700 group-hover:scale-105">{p.title}</span>
-                  </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <div className="absolute top-5 right-5 h-11 w-11 rounded-full bg-background/70 backdrop-blur-md grid place-items-center group-hover:bg-gold group-hover:text-gold-foreground transition-all duration-300">
-                    <ArrowUpRight className="h-4 w-4 transition-transform group-hover:rotate-45" />
-                  </div>
-                </div>
-                <div className="mt-6 flex items-center justify-between">
-                  <div>
-                    <h3 className="font-display text-[22px] tracking-tight">{p.title}</h3>
-                    <p className="text-[13px] text-muted-foreground mt-1 tracking-wide">{p.tag}</p>
-                  </div>
-                  <span className="text-[13px] text-muted-foreground/80 tabular-nums">{p.year}</span>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* TESTIMONIALS */}
-      <section className="py-28 md:py-40">
-        <div className="container-wide">
-          <SectionHeader eyebrow="Trusted by founders" title={<>Words from the <span className="italic text-gold">people</span> we build with.</>} align="center" />
-          <div className="mt-20 grid gap-6 md:grid-cols-2">
-            {testimonials.map((t, i) => (
-              <motion.figure
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ delay: i * 0.1, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                className="card-luxe p-10 md:p-12"
-              >
-                <div className="flex gap-1 text-gold mb-7">
-                  {Array.from({ length: 5 }).map((_, j) => <Star key={j} className="h-3.5 w-3.5 fill-current" />)}
-                </div>
-                <blockquote className="font-display text-[22px] md:text-[26px] leading-[1.35] tracking-tight pretty">
-                  "{t.quote}"
-                </blockquote>
-                <figcaption className="mt-10 flex items-center gap-4 pt-8 border-t border-border">
-                  <div className="h-11 w-11 rounded-full bg-gradient-to-br from-gold to-[oklch(0.5_0.1_60)]" />
-                  <div>
-                    <p className="font-medium text-[15px]">{t.author}</p>
-                    <p className="text-[13px] text-muted-foreground mt-0.5">{t.role}</p>
-                  </div>
-                </figcaption>
-              </motion.figure>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="pb-28">
-        <div className="container-wide">
-          <div className="relative overflow-hidden rounded-[2.5rem] p-14 md:p-24 text-center" style={{ background: "var(--gradient-gold)", color: "var(--gold-foreground)", boxShadow: "var(--shadow-gold)" }}>
-            <div className="absolute inset-0 grain opacity-25" />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,oklch(1_0_0/0.18),transparent_60%)]" />
-            <div className="relative">
-              <p className="text-[11px] uppercase tracking-[0.4em] opacity-70">Let's build</p>
-              <h2 className="mt-5 font-display text-[clamp(2.5rem,6vw,5.5rem)] leading-[1.0] tracking-[-0.03em] max-w-4xl mx-auto display-balance">
-                Have a project in mind? <span className="italic">Let's make it inevitable.</span>
-              </h2>
-              <Link to="/contact" className="mt-12 inline-flex items-center gap-2 h-14 pl-7 pr-2 rounded-full bg-background text-foreground font-medium hover:bg-foreground hover:text-background transition-colors group">
-                Start a conversation
-                <span className="grid place-items-center h-10 w-10 rounded-full bg-foreground/10 group-hover:bg-background/15 transition-colors">
-                  <ArrowUpRight className="h-4 w-4" />
-                </span>
+        <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+          {services.map((s) => (
+            <div key={s.title} className="card-soft p-6">
+              <div className="h-11 w-11 grid place-items-center rounded-lg" style={{ background: s.bg }}>
+                <s.icon className="h-5 w-5" style={{ color: s.color }} />
+              </div>
+              <h3 className="mt-5 font-display text-lg">{s.title}</h3>
+              <p className="mt-1.5 text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
+              <Link to="/services" className="mt-4 inline-flex items-center gap-1 text-sm text-brand font-medium hover:gap-2 transition-all">
+                Learn More <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             </div>
+          ))}
+        </div>
+
+        {/* STATS */}
+        <div className="mt-10 card-soft p-6 grid grid-cols-2 md:grid-cols-4 gap-6">
+          {stats.map((s) => (
+            <div key={s.label} className="flex items-center gap-4">
+              <div className="h-12 w-12 grid place-items-center rounded-xl" style={{ background: "color-mix(in oklab, var(--brand) 15%, transparent)" }}>
+                <s.icon className="h-5 w-5 text-brand" />
+              </div>
+              <div>
+                <div className="font-display text-2xl">{s.value}</div>
+                <div className="text-xs text-muted-foreground">{s.label}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* OUR WORK */}
+      <section className="container-wide py-16">
+        <div className="text-center relative max-w-3xl mx-auto">
+          <span className="eyebrow">Our Work</span>
+          <h2 className="mt-3 font-display text-[clamp(1.85rem,3.4vw,2.6rem)] balance">Books We've Helped Bring to Life</h2>
+          <Link to="/portfolio" className="hidden md:inline-flex absolute right-0 top-1/2 -translate-y-1/2 btn-outline !h-10 !px-4">
+            View All Projects <ArrowRight className="h-3.5 w-3.5" />
+          </Link>
+        </div>
+        <div className="mt-10 relative">
+          <button aria-label="prev" className="hidden md:grid absolute -left-4 top-1/2 -translate-y-1/2 h-10 w-10 place-items-center rounded-full border border-border bg-background hover:bg-secondary z-10">
+            <ChevronLeft className="h-4 w-4" />
+          </button>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+            {books.map((b) => (
+              <div key={b.title} className="group">
+                <div className="relative overflow-hidden rounded-lg border border-border aspect-[2/3] bg-surface">
+                  <img src={b.src} alt={b.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+                </div>
+                <div className="mt-3 text-center">
+                  <p className="font-display text-sm">{b.title}</p>
+                  <p className="text-xs text-muted-foreground">{b.author}</p>
+                </div>
+              </div>
+            ))}
           </div>
+          <button aria-label="next" className="hidden md:grid absolute -right-4 top-1/2 -translate-y-1/2 h-10 w-10 place-items-center rounded-full border border-border bg-background hover:bg-secondary z-10">
+            <ChevronRight className="h-4 w-4" />
+          </button>
+        </div>
+      </section>
+
+      {/* TESTIMONIAL + PRICING */}
+      <section className="container-wide py-16 grid lg:grid-cols-[1fr_2fr] gap-6">
+        <div className="card-soft p-7">
+          <span className="eyebrow">Testimonials</span>
+          <h3 className="mt-3 font-display text-2xl">What Authors Say About Us</h3>
+          <div className="mt-6 flex gap-4">
+            <img src={sarah} alt="Sarah Mitchell" className="h-16 w-16 rounded-full object-cover" loading="lazy" />
+            <div className="flex-1">
+              <Quote className="h-5 w-5 text-brand mb-2" />
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                WhiteFalcon Publishing made my dream come true. Their team is professional, supportive, and truly cares about your success.
+              </p>
+              <p className="mt-3 text-sm font-semibold">— Sarah Mitchell</p>
+              <p className="text-xs text-muted-foreground">Author of "The Silent Waves"</p>
+            </div>
+          </div>
+          <div className="mt-6 flex justify-center gap-1.5">
+            {[0,1,2,3].map((i) => <span key={i} className={`h-1.5 rounded-full transition-all ${i === 0 ? "w-6 bg-brand" : "w-1.5 bg-border"}`} />)}
+          </div>
+        </div>
+
+        <div>
+          <div className="text-center">
+            <span className="eyebrow">Pricing Plans</span>
+            <h3 className="mt-3 font-display text-2xl">Affordable Plans for Every Author</h3>
+          </div>
+          <div className="mt-6 grid sm:grid-cols-3 gap-4">
+            {plans.map((p) => (
+              <div key={p.name} className={`card-soft p-5 relative ${p.featured ? "ring-2 ring-[var(--brand)]" : ""}`}>
+                {p.featured && <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 text-[9px] tracking-widest bg-brand px-2.5 py-0.5 rounded-full font-semibold whitespace-nowrap">MOST POPULAR</span>}
+                <h4 className="font-display text-lg">{p.name}</h4>
+                <p className="text-xs text-muted-foreground mt-0.5">{p.tag}</p>
+                <div className="mt-3 flex items-baseline gap-1.5">
+                  <span className="font-display text-2xl">{p.price}</span>
+                  <span className="text-[10px] text-muted-foreground">One-time</span>
+                </div>
+                <ul className="mt-4 space-y-2">
+                  {p.features.map((f) => (
+                    <li key={f} className="flex items-center gap-1.5 text-xs"><Check className="h-3.5 w-3.5 text-brand shrink-0" /> {f}</li>
+                  ))}
+                </ul>
+                <Link to="/contact" className={`mt-5 w-full text-xs ${p.featured ? "btn-primary" : "btn-outline"} !h-9`}>Choose Plan</Link>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA STRIP */}
+      <section className="container-wide pb-16">
+        <div className="card-soft p-6 md:p-8 grid lg:grid-cols-[1.1fr_2fr] gap-6 items-center">
+          <div className="flex items-center gap-4">
+            <div className="h-14 w-14 grid place-items-center rounded-xl shrink-0" style={{ background: "color-mix(in oklab, var(--brand) 18%, transparent)" }}>
+              <Cloud className="h-6 w-6 text-brand" />
+            </div>
+            <div>
+              <span className="eyebrow">Ready to publish?</span>
+              <h3 className="font-display text-xl mt-1">Submit Your Manuscript</h3>
+              <p className="text-xs text-muted-foreground mt-1">Take the first step today. Submit your manuscript and let's bring your book to life.</p>
+            </div>
+          </div>
+          <form className="grid sm:grid-cols-2 gap-3">
+            <input placeholder="Your Name" className="h-11 px-4 rounded-lg bg-surface border border-border text-sm outline-none focus:border-[var(--brand)]" />
+            <input placeholder="Email Address" className="h-11 px-4 rounded-lg bg-surface border border-border text-sm outline-none focus:border-[var(--brand)]" />
+            <div className="sm:col-span-1 h-11 px-4 rounded-lg bg-surface border border-dashed border-border flex items-center gap-2 text-xs text-muted-foreground">
+              <Upload className="h-4 w-4 text-brand" /> Upload Manuscript (PDF, DOC, DOCX)
+            </div>
+            <button type="button" className="btn-primary sm:col-span-1">Submit Manuscript <ArrowRight className="h-4 w-4" /></button>
+          </form>
         </div>
       </section>
     </>
+  );
+}
+
+function FloatTag({ className, icon: Icon, label }: { className?: string; icon: typeof Edit3; label: string }) {
+  return (
+    <div className={`absolute z-20 ${className ?? ""}`}>
+      <div className="card-soft px-3 py-2 flex items-center gap-2 backdrop-blur-md bg-background/70">
+        <Icon className="h-3.5 w-3.5 text-brand" />
+        <span className="text-xs font-medium">{label}</span>
+      </div>
+    </div>
   );
 }
