@@ -92,7 +92,7 @@ export function Navbar() {
           >
             <div className="container-wide py-4 flex flex-col gap-1">
               {links.map((l) => (
-                <Link key={l.to} to={l.to} onClick={() => setOpen(false)} className="px-3 py-3 rounded-lg text-foreground hover:bg-secondary">
+                <Link key={l.to} to={l.to as string} onClick={() => setOpen(false)} className="px-3 py-3 rounded-lg text-foreground hover:bg-secondary">
                   {l.label}
                 </Link>
               ))}
