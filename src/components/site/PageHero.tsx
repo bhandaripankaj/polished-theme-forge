@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 export function PageHero({ eyebrow, title, description }: { eyebrow: string; title: ReactNode; description?: string }) {
   return (
     <section className="relative overflow-hidden">
-      <div className="absolute inset-0 -z-10" style={{ background: "var(--gradient-radial)" }} />
+      <div className="absolute inset-0 -z-10" style={{ background: "var(--gradient-hero)" }} />
       <div className="absolute inset-0 -z-10 grain opacity-30" />
       <div className="container-wide pt-24 pb-20 md:pt-32 md:pb-28">
         <motion.span initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="eyebrow">
