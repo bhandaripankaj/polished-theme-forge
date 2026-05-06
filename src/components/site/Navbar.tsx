@@ -5,7 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "@/components/theme-provider";
 import { cn } from "@/lib/utils";
 
-const links = [
+type NavLink = { to: string; label: string; caret?: boolean };
+const links: NavLink[] = [
   { to: "/", label: "Home" },
   { to: "/services", label: "Services" },
   { to: "/how-it-works", label: "How It Works" },
@@ -13,7 +14,7 @@ const links = [
   { to: "/portfolio", label: "Portfolio" },
   { to: "/resources", label: "Resources", caret: true },
   { to: "/about", label: "About Us" },
-] as const;
+];
 
 export function Navbar() {
   const { theme, toggle } = useTheme();
