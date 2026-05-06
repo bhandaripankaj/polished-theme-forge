@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
-import { Menu, Moon, Sun, X } from "lucide-react";
-import { useState } from "react";
+import { ArrowUpRight, Menu, Moon, Sun, X } from "lucide-react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "@/components/theme-provider";
 import { cn } from "@/lib/utils";
@@ -9,30 +9,47 @@ const links = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About" },
   { to: "/services", label: "Services" },
-  { to: "/portfolio", label: "Portfolio" },
+  { to: "/portfolio", label: "Work" },
   { to: "/contact", label: "Contact" },
 ] as const;
 
 export function Navbar() {
   const { theme, toggle } = useTheme();
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <header className="sticky top-0 z-50 backdrop-blur-xl bg-background/70 border-b border-border">
-      <div className="container-wide flex h-20 items-center justify-between">
-        <Link to="/" className="flex items-center gap-2 group">
-          <span className="grid place-items-center h-9 w-9 rounded-xl bg-gold text-gold-foreground font-display text-lg font-bold">N</span>
-          <span className="font-display text-xl font-semibold tracking-tight">Noctura<span className="text-gold">.</span></span>
+    <header
+      className={cn(
+        "sticky top-0 z-50 transition-all duration-500",
+        scrolled
+          ? "backdrop-blur-2xl bg-background/75 border-b border-border"
+          : "bg-transparent border-b border-transparent"
+      )}
+    >
+      <div className="container-wide flex h-[72px] items-center justify-between">
+        <Link to="/" className="flex items-center gap-2.5 group">
+          <span className="grid place-items-center h-8 w-8 rounded-lg bg-gold text-gold-foreground font-display text-base font-semibold">N</span>
+          <span className="font-display text-[19px] font-medium tracking-tight">
+            Noctura<span className="text-gold">.</span>
+          </span>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-1">
+        <nav className="hidden md:flex items-center gap-0.5 rounded-full border border-border/70 bg-background/40 backdrop-blur-md p-1">
           {links.map((l) => (
             <Link
               key={l.to}
               to={l.to}
-              className="px-4 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors rounded-full"
+              className="px-4 py-2 text-[13px] text-muted-foreground hover:text-foreground transition-colors rounded-full"
               activeOptions={{ exact: l.to === "/" }}
-              activeProps={{ className: "px-4 py-2 text-sm text-foreground rounded-full bg-secondary" }}
+              activeProps={{ className: "px-4 py-2 text-[13px] text-foreground rounded-full bg-secondary" }}
             >
               {l.label}
             </Link>
@@ -49,9 +66,12 @@ export function Navbar() {
           </button>
           <Link
             to="/contact"
-            className="hidden md:inline-flex items-center gap-2 h-10 px-5 rounded-full bg-gold text-gold-foreground text-sm font-medium hover:opacity-90 transition-opacity"
+            className="hidden md:inline-flex items-center gap-1.5 h-10 pl-5 pr-2 rounded-full bg-foreground text-background text-[13px] font-medium hover:bg-gold hover:text-gold-foreground transition-colors group"
           >
             Start a project
+            <span className="grid place-items-center h-7 w-7 rounded-full bg-background/15 group-hover:bg-gold-foreground/15 transition-colors">
+              <ArrowUpRight className="h-3.5 w-3.5" />
+            </span>
           </Link>
           <button
             onClick={() => setOpen((v) => !v)}
@@ -77,7 +97,7 @@ export function Navbar() {
                   key={l.to}
                   to={l.to}
                   onClick={() => setOpen(false)}
-                  className={cn("px-4 py-3 rounded-xl text-foreground hover:bg-secondary")}
+                  className="px-4 py-3 rounded-xl text-foreground hover:bg-secondary"
                 >
                   {l.label}
                 </Link>
