@@ -5,24 +5,31 @@ export function PageHero({ eyebrow, title, description }: { eyebrow: string; tit
   return (
     <section className="relative overflow-hidden">
       <div className="absolute inset-0 -z-10" style={{ background: "var(--gradient-radial)" }} />
+      <div className="absolute inset-0 -z-10 grain opacity-30" />
       <div className="container-wide pt-24 pb-20 md:pt-32 md:pb-28">
-        <motion.span initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.3em] text-gold">
-          <span className="h-px w-10 bg-gold/60" /> {eyebrow}
+        <motion.span initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="eyebrow">
+          {eyebrow}
         </motion.span>
         <motion.h1
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          className="mt-6 font-display text-5xl md:text-7xl leading-[1.02] font-medium max-w-4xl"
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-6 font-display text-[clamp(2.75rem,6.5vw,5.75rem)] leading-[0.98] tracking-tight max-w-5xl display-balance"
         >
           {title}
         </motion.h1>
         {description && (
-          <motion.p initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }} className="mt-7 max-w-2xl text-lg md:text-xl text-muted-foreground leading-relaxed">
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.15 }}
+            className="mt-8 max-w-2xl text-[17px] md:text-lg text-muted-foreground leading-[1.65] pretty"
+          >
             {description}
           </motion.p>
         )}
       </div>
+      <div className="hairline" />
     </section>
   );
 }

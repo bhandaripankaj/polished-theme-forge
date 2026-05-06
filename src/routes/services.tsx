@@ -51,27 +51,26 @@ function ServicesPage() {
         description="We're set up so strategy, design, engineering and motion can pull on the same thread — without handoffs that cost momentum."
       />
 
-      <section className="container-wide pb-32 space-y-6">
+      <section className="container-wide pb-32 space-y-8">
         {services.map((s, i) => (
           <motion.div
             key={s.n}
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.05 }}
-            className="rounded-3xl border border-border bg-card p-10 md:p-14 grid md:grid-cols-[1fr_2fr] gap-10"
-            style={{ boxShadow: "var(--shadow-elegant)" }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ delay: i * 0.05, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="card-luxe p-10 md:p-16 grid md:grid-cols-[1fr_2fr] gap-10 md:gap-16"
           >
             <div>
-              <span className="text-gold font-display text-2xl">{s.n}</span>
-              <h2 className="mt-3 font-display text-3xl md:text-4xl font-medium leading-tight">{s.title}</h2>
+              <span className="text-gold/80 font-display text-[15px] tracking-[0.3em]">— {s.n}</span>
+              <h2 className="mt-4 font-display text-[30px] md:text-[40px] leading-[1.05] tracking-tight">{s.title}</h2>
             </div>
             <div>
-              <p className="text-lg text-muted-foreground leading-relaxed">{s.desc}</p>
-              <ul className="mt-8 grid sm:grid-cols-2 gap-3">
+              <p className="text-[17px] text-muted-foreground leading-[1.65] pretty max-w-xl">{s.desc}</p>
+              <ul className="mt-10 grid sm:grid-cols-2 gap-x-8 gap-y-4">
                 {s.items.map((it) => (
-                  <li key={it} className="flex items-start gap-3 text-foreground/90">
-                    <span className="mt-1 h-5 w-5 grid place-items-center rounded-full bg-gold/15 text-gold"><Check className="h-3 w-3" /></span>
+                  <li key={it} className="flex items-center gap-3 text-[15px] text-foreground/90 py-3 border-b border-border">
+                    <span className="h-5 w-5 grid place-items-center rounded-full bg-gold/15 text-gold shrink-0"><Check className="h-3 w-3" /></span>
                     {it}
                   </li>
                 ))}
@@ -80,8 +79,8 @@ function ServicesPage() {
           </motion.div>
         ))}
 
-        <div className="pt-10 text-center">
-          <Link to="/contact" className="inline-flex items-center gap-2 h-12 px-7 rounded-full bg-gold text-gold-foreground font-medium hover:opacity-90 transition-opacity">
+        <div className="pt-16 text-center">
+          <Link to="/contact" className="btn-primary">
             Discuss your project <ArrowUpRight className="h-4 w-4" />
           </Link>
         </div>

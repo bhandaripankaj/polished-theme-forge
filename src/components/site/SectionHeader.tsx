@@ -13,23 +13,23 @@ export function SectionHeader({
   align?: "left" | "center";
 }) {
   return (
-    <div className={align === "center" ? "text-center max-w-2xl mx-auto" : "max-w-2xl"}>
+    <div className={align === "center" ? "text-center max-w-3xl mx-auto" : "max-w-3xl"}>
       {eyebrow && (
         <motion.span
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-gold"
+          className="eyebrow"
         >
-          <span className="h-px w-8 bg-gold/60" /> {eyebrow}
+          {eyebrow}
         </motion.span>
       )}
       <motion.h2
         initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="mt-4 font-display text-4xl md:text-5xl leading-[1.05] font-medium"
+        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        className="mt-5 font-display text-[clamp(2.25rem,4.6vw,3.75rem)] leading-[1.02] tracking-tight display-balance"
       >
         {title}
       </motion.h2>
@@ -39,7 +39,7 @@ export function SectionHeader({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="mt-5 text-muted-foreground text-lg leading-relaxed"
+          className="mt-6 text-muted-foreground text-[17px] leading-[1.65] pretty max-w-2xl"
         >
           {description}
         </motion.p>
