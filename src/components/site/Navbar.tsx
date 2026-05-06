@@ -50,7 +50,7 @@ export function Navbar() {
           {links.map((l) => (
             <Link
               key={l.to}
-              to={l.to}
+              to={l.to as string}
               className="px-3 py-2 text-[13.5px] font-medium text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-1"
               activeOptions={{ exact: l.to === "/" }}
               activeProps={{ className: "px-3 py-2 text-[13.5px] font-medium text-foreground inline-flex items-center gap-1 relative after:content-[''] after:absolute after:left-3 after:right-3 after:-bottom-0.5 after:h-[2px] after:rounded-full after:bg-[var(--brand)]" }}
