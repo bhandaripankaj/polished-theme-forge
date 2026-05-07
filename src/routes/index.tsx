@@ -126,15 +126,27 @@ function HomePage() {
               animate={{ rotateZ: [-3, 3, -3] }}
               transition={{ duration: 6, ease: "easeInOut", repeat: Infinity }}
             >
-              <motion.img
-                src={heroBook}
-                alt="Beyond The Horizon book by Alex Richards"
-                className="h-full w-auto object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.6)] [transform-origin:50%_50%] [will-change:transform] [backface-visibility:hidden]"
-                width={896}
-                height={1024}
-                animate={{ rotateY: [0, 360] }}
-                transition={{ duration: 2, ease: "easeInOut", repeat: Infinity, repeatDelay: 1 }}
-              />
+              <motion.div
+                className="relative h-full [transform-style:preserve-3d] [will-change:transform]"
+                animate={{ rotateY: 360 }}
+                transition={{ duration: 8, ease: "easeInOut", repeat: Infinity, repeatDelay: 1 }}
+              >
+                <img
+                  src={heroBook}
+                  alt="Beyond The Horizon book by Alex Richards"
+                  className="h-full w-auto object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.6)] [backface-visibility:hidden]"
+                  width={896}
+                  height={1024}
+                />
+                <img
+                  src={heroBook}
+                  alt=""
+                  aria-hidden="true"
+                  className="absolute inset-0 h-full w-auto object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.6)] [backface-visibility:hidden] [transform:rotateY(180deg)]"
+                  width={896}
+                  height={1024}
+                />
+              </motion.div>
             </motion.div>
             <FloatTag className="top-4 right-2 md:right-8" icon={Edit3} label="Editing" />
             <FloatTag className="top-24 right-0" icon={PenLine} label="Design" />
