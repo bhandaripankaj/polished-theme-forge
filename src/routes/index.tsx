@@ -132,8 +132,8 @@ function HomePage() {
                 className="h-full w-auto object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.6)] [transform-origin:50%_50%] [will-change:transform] [backface-visibility:hidden]"
                 width={896}
                 height={1024}
-                animate={{ rotateY: 360 }}
-                transition={{ duration: 1, ease: "linear", repeat: Infinity }}
+                animate={{ rotateY: [0, 360] }}
+                transition={{ duration: 2, ease: "easeInOut", repeat: Infinity, repeatDelay: 1 }}
               />
             </motion.div>
             <FloatTag className="top-4 right-2 md:right-8" icon={Edit3} label="Editing" />
