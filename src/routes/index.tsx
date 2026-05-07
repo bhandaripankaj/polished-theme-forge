@@ -121,7 +121,15 @@ function HomePage() {
             <div className="absolute inset-0 grid place-items-center">
               <div className="h-[380px] w-[380px] md:h-[460px] md:w-[460px] rounded-full border border-[color-mix(in_oklab,var(--brand)_30%,transparent)] opacity-70" />
             </div>
-            <img src={heroBook} alt="Beyond The Horizon book by Alex Richards" className="relative z-10 h-full w-auto object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.6)]" width={896} height={1024} />
+            <motion.img
+              src={heroBook}
+              alt="Beyond The Horizon book by Alex Richards"
+              className="relative z-10 h-full w-auto object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.6)] [transform-origin:50%_50%] [will-change:transform] [backface-visibility:hidden]"
+              width={896}
+              height={1024}
+              animate={{ rotate: 360 }}
+              transition={{ duration: 28, ease: "linear", repeat: Infinity }}
+            />
             <FloatTag className="top-4 right-2 md:right-8" icon={Edit3} label="Editing" />
             <FloatTag className="top-24 right-0" icon={PenLine} label="Design" />
             <FloatTag className="bottom-28 left-2" icon={BookOpen} label="Publishing" />
