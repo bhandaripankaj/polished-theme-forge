@@ -133,7 +133,7 @@ function HomePage() {
                 width={896}
                 height={1024}
                 animate={{ rotateY: 360 }}
-                transition={{ duration: 12, ease: "linear", repeat: Infinity }}
+                transition={{ duration: 1, ease: "linear", repeat: Infinity }}
               />
             </motion.div>
             <FloatTag className="top-4 right-2 md:right-8" icon={Edit3} label="Editing" />
